@@ -1,5 +1,5 @@
-./IMG_1750.jpg
-./IMG_1751.jpg
-./IMG_1752.jpg
-./IMG_1753.jpg
-./IMG_1754.jpg
+./data/IMG_1750.JPG
+./data/IMG_1751.jpg
+./data/IMG_1752.jpg
+./data/IMG_1753.jpg
+./data/IMG_1754.jpg

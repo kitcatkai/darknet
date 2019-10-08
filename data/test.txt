@@ -1,5 +1,5 @@
-./IMG_1755.jpg
-./IMG_1756.jpg
-./IMG_1757.jpg
-./IMG_1758.jpg
-./IMG_1759.jpg
+./data/IMG_1755.jpg
+./data/IMG_1756.jpg
+./data/IMG_1757.jpg
+./data/IMG_1758.jpg
+./data/IMG_1759.jpg
