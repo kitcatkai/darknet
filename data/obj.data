@@ -1,4 +1,4 @@
-classes= 3
+classes= 6
 train = ./data/train.txt
 valid = ./data/test.txt
 names = ./data/obj.names
