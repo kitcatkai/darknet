@@ -27,13 +27,57 @@ Your machine comes with many Conda environments pre-installed: each one is a Pyt
 Important! When you’re done using your instance, be sure to turn it off using the web interface!
 Now, let’s use this AWS instance to run our neural style transfer code. It now runs extremely quickly with 1000 iterations!
 
-
 ## Download the weights and the images
 
 1) at the main directory, `wget` https://pjreddie.com/media/files/darknet53.conv.74 
 2) at the `.\data` directory `aws s3 cp s3://kelong . --recursive`
 
+## Use `screen` command in AWS terminal
+
+Type `screen` to get into a new terminal
+`Crt` + `A` + `D` to detach and return to main terminal
+Type `screen -ls` to see all running screens
+Type `exit` in any terminal to exit the screen
+
+1) Type `screen` 
+2) `source activate tensorflow_p36`
+
+## Predicting on test images
+
+1) `./darknet detector test ./data/obj.data yolo-obj.cfg ./backup/yolo-obj_last.weights`
+2) Type `./data/<IMG>` where <IMG> is the image file name
+
+## Transfering `predictions.jpg` to local host
+
+`scp -i ec2key.pem username@ec2ip:/path/to/file .`
+
+## Run `Makefile`
+
+1) Set `GPU` and `CUDNN` to 1
+2) Finally, start training by running `./darknet detector train data/obj.data yolo-obj.cfg darknet53.conv.74`
+
+## Check for mAP
+
+`darknet.exe detector map data/obj.data yolo-obj.cfg backup\yolo-obj_7000.weights`
+
+Note: it will run from the `valid` directory in `data/obj.data`
+
+## Batch prediction
+
+As Alexyb github has limitation for batch prediction, have to `git clone https://github.com/vincentgong7/VG_AlexeyAB_darknet`
+
+1) Transfer `.cfg`, `.weights` and also the whole `data` directory that includes the images, `.names`, `.obj`
+
+Run `aws s3 cp /home/ubuntu/VG_AlexeyAB_darknet/data/output/ s3://kelong/predict --recursive` to transfer all files from source directory to s3 bucket  
+
+OR
+
+Run `zip -r output_file.zip ./output` to zip the file and download the zip from your local host
+
 ## Things to be done
 
-setup a CI/CD pipelines and tests
+setup a CI/CD pipelines and tests(file added into `script`)
+Preparing training and test set
+took 2 full days to run around 4500 iterations
+
 
