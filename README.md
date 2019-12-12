@@ -32,6 +32,10 @@ Now, let’s use this AWS instance to run our neural style transfer code. It now
 1) at the main directory, `wget` https://pjreddie.com/media/files/darknet53.conv.74 
 2) at the `.\data` directory `aws s3 cp s3://kelong . --recursive`
 
+## Download existing weights
+
+1) at the 
+
 ## Use `screen` command in AWS terminal
 
 Type `screen` to get into a new terminal
@@ -73,6 +77,10 @@ Run `aws s3 cp /home/ubuntu/VG_AlexeyAB_darknet/data/output/ s3://kelong/predict
 OR
 
 Run `zip -r output_file.zip ./output` to zip the file and download the zip from your local host
+
+## Class
+
+There are 6 classes in order 1,2,r,ci,d,cl
 
 ## Things to be done
 
