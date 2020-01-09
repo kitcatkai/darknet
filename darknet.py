@@ -390,6 +390,7 @@ def performDetect(imagePath="data/20191114_141523.jpg", thresh= 0.25, configPath
     if showImage:
         try:
             from skimage import io, draw
+            from PIL import Image
             import numpy as np
             image = io.imread(imagePath)
             print("*** "+str(len(detections))+" Results, color coded by confidence ***")
@@ -429,6 +430,8 @@ def performDetect(imagePath="data/20191114_141523.jpg", thresh= 0.25, configPath
                 draw.set_color(image, (rr3, cc3), boxColor, alpha= 0.8)
                 draw.set_color(image, (rr4, cc4), boxColor, alpha= 0.8)
                 draw.set_color(image, (rr5, cc5), boxColor, alpha= 0.8)
+            img = Image.fromarray(image, 'RGB')
+            img.save('result.jpg')
             if not makeImageOnly:
                 io.imshow(image)
                 io.show()
