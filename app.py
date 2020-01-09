@@ -28,6 +28,8 @@ def ping_pong():
 
 @app.route('/upload', methods=['POST'])
 def uploadFile():
+    file = request.files['file']
+    file.save("./test.jpg")
     darknet.performDetect(imagePath="./test.jpg")
     with open("result.jpg","rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
