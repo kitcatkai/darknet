@@ -9,20 +9,19 @@ RUN apt-get update && \
         python3-setuptools
 
 RUN pip3 install setuptools wheel virtualenv awscli --upgrade 
-
-RUN apt install python-pip
-
-RUN pip install -U scikit-image && \
-        make
-
-RUN make
-
-WORKDIR /src
+RUN pip3 install -U scikit-image
 
 COPY . .
 
+ENV LD_LIBRARY_PATH=/usr/local/cuda-10.0/compat/
+
+RUN pip3 install -r requirements.txt
+RUN chmod +x run.sh
+
+WORKDIR /src
+
 EXPOSE 8080
 
-CMD ["./train.sh"]
+CMD ["./run.sh"]
 
 
