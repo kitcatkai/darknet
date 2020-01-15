@@ -36,19 +36,19 @@ FROM nvidia/cuda:10.0-cudnn7-runtime
 
 WORKDIR /src
 
-RUN apt-get update && \
+RUN apt-get rm -rf /var/lib/apt/lists/* update && \
                 apt-get install -y \
         python3 \
         python3-pip \
-        python3-setuptools
-
-RUN pip3 install setuptools wheel virtualenv awscli --upgrade
-RUN pip3 install -U scikit-image
+        python3-setuptools &&\
+        rm -rf /var/lib/apt/lists/* &&\
+        pip3 install setuptools wheel virtualenv awscli --upgrade --no-cache-dir &&\
+        pip3 install -U scikit-image --no-cache-dir &&\
+        pip3 install -r requirements.txt --no-cache-dir &&\
+        chmod +x run.sh
 
 COPY --from=builder /src/libdarknet.so .
-
-RUN pip3 install -r requirements.txt
-RUN chmod +x run.sh
+COPY ./data .
 
 EXPOSE 8080
 
