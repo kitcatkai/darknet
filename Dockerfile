@@ -13,7 +13,7 @@ RUN pip3 install -U scikit-image
 
 COPY . .
 
-ENV LD_LIBRARY_PATH=/usr/local/cuda-10.0/compat/
+#ENV LD_LIBRARY_PATH=/usr/local/cuda-10.0/compat/
 
 RUN pip3 install -r requirements.txt
 RUN chmod +x run.sh
