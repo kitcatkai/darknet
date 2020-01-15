@@ -36,6 +36,9 @@ FROM nvidia/cuda:10.0-cudnn7-runtime
 
 WORKDIR /src
 
+COPY . .
+COPY --from=builder /src/libdarknet.so .
+
 RUN apt-get update && \
                 apt-get install -y \
         python3 \
@@ -46,9 +49,6 @@ RUN apt-get update && \
         pip3 install -U scikit-image --no-cache-dir &&\
         pip3 install -r requirements.txt --no-cache-dir &&\
         chmod +x run.sh
-
-COPY --from=builder /src/libdarknet.so .
-COPY . .
 
 EXPOSE 8080
 
