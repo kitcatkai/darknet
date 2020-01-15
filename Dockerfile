@@ -48,7 +48,7 @@ RUN apt-get rm -rf /var/lib/apt/lists/* update && \
         chmod +x run.sh
 
 COPY --from=builder /src/libdarknet.so .
-COPY ./data .
+COPY . .
 
 EXPOSE 8080
 
