@@ -36,7 +36,7 @@ FROM nvidia/cuda:10.0-cudnn7-runtime
 
 WORKDIR /src
 
-RUN apt-get rm -rf /var/lib/apt/lists/* update && \
+RUN apt-get update && \
                 apt-get install -y \
         python3 \
         python3-pip \
