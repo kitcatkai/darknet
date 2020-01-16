@@ -39,6 +39,9 @@ WORKDIR /src
 COPY . .
 COPY --from=builder /src/libdarknet.so .
 
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
 RUN apt-get update && \
                 apt-get install -y \
         python3 \
