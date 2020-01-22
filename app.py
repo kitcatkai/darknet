@@ -16,11 +16,6 @@ stats = []
 def helloWorld():
   return "Hello, cross-origin-world!"
 
-@app.route('/getData', methods=['GET'])
-def retrieveData():
-    stats = darknet.performDetect(imagePath="./test.jpg")
-    return jsonify(stats)
-
 # sanity check route
 @app.route('/ping', methods=['GET'])
 def ping_pong():
@@ -30,10 +25,11 @@ def ping_pong():
 def uploadFile():
     file = request.files['file']
     file.save("./test.jpg")
-    darknet.performDetect(imagePath="./test.jpg")
+    stats = darknet.performDetect(imagePath="./test.jpg")
     with open("result.jpg","rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
-    return encoded_string
+        base64_string = encoded_string.decode('utf-8')
+    return jsonify(img=base64_string, stat=stats)
 
 
 

@@ -387,6 +387,7 @@ def performDetect(imagePath="data/20191114_141523.jpg", thresh= 0.25, configPath
     # Do the detection
     #detections = detect(netMain, metaMain, imagePath, thresh)	# if is used cv2.imread(image)
     detections = detect(netMain, metaMain, imagePath.encode("ascii"), thresh)
+    stats = detections
     if showImage:
         try:
             from skimage import io, draw
@@ -442,7 +443,7 @@ def performDetect(imagePath="data/20191114_141523.jpg", thresh= 0.25, configPath
             }
         except Exception as e:
             print("Unable to show image: "+str(e))
-    return detections
+    return stats
 
 if __name__ == "__main__":
-    print(performDetect())
+    performDetect()
