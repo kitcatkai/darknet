@@ -1,6 +1,6 @@
 ## Backend
 
-This repo contains the backend(flask and darknet model) for for ilytics.sg 
+This repo contains the backend(flask and darknet model) for ilytics.sg 
 
 ## Run Instruction
 
